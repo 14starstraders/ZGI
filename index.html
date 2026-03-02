@@ -250,7 +250,7 @@
         <div class="nav-links">
             <a onclick="app.nav('home')">Home</a>
             <a onclick="app.nav('catalog')">Shop</a>
-            <a onclick="app.nav('cart')">🛒 Bag <span class="badge" id="badge">0</span></a>
+            <a onclick="app.nav('cart')">🛒 CART <span class="badge" id="badge">0</span></a>
         </div>
     </nav>
 </header>
@@ -317,7 +317,7 @@
         
         <section id="page-cart" class="page-view">
             <div class="container" style="max-width:600px; background:white; padding:30px; border-radius:20px;">
-                <h2 style="font-family:'Amiri'; border-bottom:2px solid var(--gold); padding-bottom:10px;">Your Shopping Bag</h2>
+                <h2 style="font-family:'Amiri'; border-bottom:2px solid var(--gold); padding-bottom:10px;">Your Shopping CART</h2>
                 <div id="cartList" style="margin-top:20px;"></div>
                 <h3 style="margin-top:20px; text-align:right;">Subtotal: Rs. <span id="cartTotal">0</span></h3>
                 <button onclick="app.nav('checkout')" class="btn-buy" style="margin-top:20px; border-radius:50px;">PROCEED TO CHECKOUT</button>
@@ -438,7 +438,7 @@
                             <h3 style="font-size:17px; height:45px; overflow:hidden;">${p.name}</h3>
                             <span class="price">Rs. ${p.price}</span>
                             <div id="btn-container-${p.id}">
-                                ${qty > 0 ? this.qtyHtml(p.id, qty) : `<button class="btn-buy" onclick="app.updateQty(${p.id}, 1)">ADD TO BAG</button>`}
+                                ${qty > 0 ? this.qtyHtml(p.id, qty) : `<button class="btn-buy" onclick="app.updateQty(${p.id}, 1)">ADD TO CART</button>`}
                             </div>
                         </div>
                     </article>
@@ -470,7 +470,7 @@
                 if (container) {
                     container.innerHTML = newItem 
                         ? this.qtyHtml(id, newItem.qty) 
-                        : `<button class="btn-buy" onclick="app.updateQty(${id}, 1)">ADD TO BAG</button>`;
+                        : `<button class="btn-buy" onclick="app.updateQty(${id}, 1)">ADD TO CART</button>`;
                 }
                 
                 // Update badge
@@ -494,7 +494,7 @@
                             </div>
                             <p style="margin:20px 0; color:#666; font-size:17px;">${p.desc}</p>
                             <div id="spec-btn-container">
-                                ${qty > 0 ? this.qtyHtml(p.id, qty) : `<button class="btn-buy" onclick="app.updateQty(${p.id}, 1); app.showSpec(${p.id})">ADD TO SHOPPING BAG</button>`}
+                                ${qty > 0 ? this.qtyHtml(p.id, qty) : `<button class="btn-buy" onclick="app.updateQty(${p.id}, 1); app.showSpec(${p.id})">ADD TO SHOPPING CART</button>`}
                             </div>
                             <p style="text-align:center; color:#999; cursor:pointer; margin-top:20px;" onclick="app.nav('catalog')">← Back to Shop</p>
                         </div>
@@ -508,7 +508,7 @@
     const list = document.getElementById('cartList');
     
     if(this.cart.length === 0) {
-        list.innerHTML = "<div style='text-align:center; padding:50px;'><p>Your bag is empty.</p></div>";
+        list.innerHTML = "<div style='text-align:center; padding:50px;'><p>Your cart is empty.</p></div>";
         document.getElementById('cartTotal').innerText = "0";
         return;
     }
@@ -573,6 +573,7 @@
 </style>
 </body>
 </html>
+
 
 
 
