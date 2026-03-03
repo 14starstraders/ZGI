@@ -443,64 +443,12 @@
         <button onclick="googleLogin()" class="btn-buy">
             🔵 Login with Google
         </button>
-        <button onclick="biometricLogin()" class="btn-buy" style="margin-top:15px; background:#004d40; color:white;">
-    🔒 Login with Passkey / Biometric
-</button>
 
        
         <button onclick="logout()" 
             style="margin-top:10px; background:none; border:none; color:red; cursor:pointer;">
             Logout
         </button>
-        <!-- Existing Firebase / Auth script ke baad -->
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-
-<script>
-  // Aapka existing firebase auth code yaha hai
-</script>
-
-<!-- Add this Biometric Login script just after your Firebase scripts -->
-<script>
-async function biometricLogin() {
-    if (!window.PublicKeyCredential) {
-        alert("Sorry, your browser does not support WebAuthn.");
-        return;
-    }
-
-    try {
-        const challenge = new Uint8Array(32);
-        window.crypto.getRandomValues(challenge);
-
-        const publicKey = {
-            challenge: challenge,
-            rp: { name: "Zainabya Group Islamic" },
-            user: {
-                id: Uint8Array.from(String("user-id-123"), c => c.charCodeAt(0)),
-                name: "user@example.com",
-                displayName: "User Demo"
-            },
-            pubKeyCredParams: [{ type: "public-key", alg: -7 }],
-            authenticatorSelection: {
-                authenticatorAttachment: "platform",
-                userVerification: "required"
-            },
-            timeout: 60000,
-            attestation: "direct"
-        };
-
-        const credential = await navigator.credentials.create({ publicKey });
-        console.log("Credential created:", credential);
-
-        alert("✅ Biometric login successful!");
-        document.getElementById("userInfo").innerHTML = "✅ Logged in via Biometric";
-
-    } catch (err) {
-        console.error(err);
-        alert("❌ Biometric login failed: " + err.message);
-    }
-}
-</script>
 
         <p id="userInfo" style="margin-top:15px;"></p>
     </div>
@@ -827,6 +775,8 @@ function closeContactPopup() {
 </script>
 </body>
 </html>
+
+
 
 
 
