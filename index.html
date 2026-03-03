@@ -334,16 +334,16 @@
         </div>
         <div class="nav-links">
    <a onclick="app.nav('home')">
-       <img src="HOME.webp" style="width:35px; height:35px;">
+    <img src="HOME.webp" style="width:35px; height:35px;" decoding="async">
    </a>
    <a onclick="app.nav('catalog')">
-       <img src="CATALOG.png" style="width:35px; height:35px;">
+<img src="CATALOG.webp" style="width:35px; height:35px;" decoding="async">
    </a>
    <a onclick="app.nav('cart')">
-       <img src="CART.png" style="width:35px; height:35px;">
+<img src="CATALOG.webp" style="width:35px; height:35px;" decoding="async">
    </a>
    <a onclick="app.nav('account')">
-       <img src="ACCOUNT.webp" style="width:35px; height:35px;">
+       <img src="ACCOUNT.webp" style="width:35px; height:35px;" decoding="async">
    </a>
 </div>
     </nav>
@@ -351,7 +351,7 @@
 
     <main>
         <section class="top-hero-banner" id="mainHero">
-            <img src="BANNER.webp" alt="Zainabya Premium Islamic Banner" fetchpriority="high">
+         <img src="BANNER.webp" alt="Zainabya Premium Islamic Banner" width="1920" height="600" loading="lazy" decoding="async" fetchpriority="high">
             <div class="banner-text">
            
                 <p></p>
@@ -633,7 +633,7 @@ async function biometricLogin() {
                     <article class="card">
                         <div class="card-tag"> OFFER</div>
                         <div class="card-img-container" onclick="app.showSpec(${p.id})">
-                            <img src="${p.img}" alt="${p.name}" loading="lazy">
+                            <img src="${p.img}" alt="${p.name}" width="250" height="250" loading="lazy" decoding="async">
                         </div>
                         <div style="padding:10px 20px;">
                             <h3 style="font-size:17px; height:45px; overflow:hidden;">${p.name}</h3>
@@ -705,19 +705,21 @@ async function biometricLogin() {
 
         <!-- Product Details -->
         <div style="flex:1; min-width:300px;">
-            <h2 style="font-family:'Amiri', serif; font-size:32px; margin-bottom:10px;">${p.name}</h2>
             <span style="font-size:14px; color:#777; margin-bottom:10px; display:block;">Category: ${p.category}</span>
-            <span class="price" style="font-size:28px; color: var(--islamic-green); font-weight:700;">Rs. ${p.price}</span>
-
-            <!-- Offer Badge -->
-            <div style="background:#fff4f4; color:var(--offer-red); padding:10px; border-radius:10px; margin:15px 0; font-weight:700; border:1px dashed var(--offer-red);">
-                🎁 OFFER: Buy 1 Get 1 Free Applied!
-            </div>
-
+            <h2 style="font-family:'Amiri', serif; font-size:32px; margin-bottom:10px;">${p.name}</h2>
             <!-- Product Description -->
             <p style="font-size:16px; color:#555; line-height:1.5; margin-bottom:20px;">
                 ${p.desc}
             </p>
+
+            
+            <span class="price" style="font-size:28px; color: var(--islamic-green); font-weight:700;">Rs. ${p.price}</span>
+
+           
+                
+            
+
+            
 
             <!-- Quantity Controls -->
             <div id="spec-btn-container">
@@ -743,7 +745,7 @@ async function biometricLogin() {
         return;
     }
 
-    list.innerHTML = this.cart.map((i) => { 
+   list.innerHTML = this.cart.map((i) => { 
         total += (i.price * i.qty); 
         return `
         <div style="display:flex; justify-content:space-between; align-items:center; padding:15px 0; border-bottom:1px solid #eee;">
@@ -855,7 +857,6 @@ function closeContactPopup() {
 </script>
 </body>
 </html>
-
 
 
 
