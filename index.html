@@ -634,7 +634,7 @@ async function biometricLogin() {
                 { id: 6, name: "QURAN", price: 499, img: "QURAN.jpg", category: "BOOKS", desc: "Compact size Holy Quran for reading." }
             ],
            
-            cart: [],
+             cart: [],
             init() { this.renderCatalog(this.products); },
            nav(id) {
     document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
@@ -848,6 +848,7 @@ function closeContactPopup() {
     <span onclick="app.nav('home')" style="font-size: 24px; cursor: pointer;">🏠</span>
     <span onclick="app.nav('catalog')" style="font-size: 24px; cursor: pointer;">🛍️</span>
     <span onclick="app.nav('cart')" style="font-size: 24px; cursor: pointer;">🛒</span>
+    <span onclick="app.nav('account')" style="font-size: 24px; cursor: pointer;">👤</span>
 </div>
 
 
@@ -930,7 +931,6 @@ document.getElementById("badge").innerText = savedCart.length;
 </script>
 </body>
 </html>
-
 
 
 
