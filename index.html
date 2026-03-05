@@ -539,25 +539,15 @@ async function biometricLogin() {
 
     </main>
 
-  <div id="payModal">
-<div class="pay-card">
-
-<h2 id="payTitle" style="font-family:'Amiri';">Secure Payment</h2>
-
-<p>Total Amount: ₹<span id="payTotal">0</span></p>
-
-<img src="QR.webp" alt="UPI QR" width="220" style="margin:15px 0;">
-
-<p style="font-size:14px;">Scan the QR code and complete payment via UPI</p>
-
-<button onclick="app.closePay()" 
-style="margin-top:15px;padding:10px 20px;border:none;background:#d32f2f;color:white;border-radius:10px;cursor:pointer;">
-Cancel
-</button>
-
-</div>
-</div>
-
+<div id="payModal" role="dialog" aria-labelledby="payTitle">
+        <div class="pay-card">
+            <h2 id="payTitle" style="font-family:'Amiri';">Secure Payment</h2>
+            <p>Total Amount: <b style="font-size:24px; color:var(--gold)">Rs. <span id="payAmt">0</span></b></p>
+            <img id="qrImg" src="" alt="Payment QR Code" width="220" height="220" style="margin:20px 0; border: 1px solid #eee;">
+            <button onclick="app.confirmOrder()" style="background:#25d366; color:white; width:100%; padding:15px; border:none; border-radius:50px; font-weight:700; cursor:pointer;">I HAVE PAID (Confirm on WA)</button>
+            <button onclick="document.getElementById('payModal').style.display='none'" style="margin-top:15px; background:none; border:none; color:#999; cursor:pointer;">Cancel</button>
+        </div>
+    </div>
    <a class="wa-float" onclick="openContactPopup()" aria-label="Contact us">📲</a>
 
   <footer style="background: #2a3038; color: white; padding: 60px 20px; margin-top: 50px;">
@@ -940,7 +930,6 @@ document.getElementById("badge").innerText = savedCart.length;
 </script>
 </body>
 </html>
-
 
 
 
