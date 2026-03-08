@@ -1,4 +1,3 @@
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -20,6 +19,29 @@
 
 * { margin:0; padding:0; box-sizing:border-box; font-family: 'Montserrat', sans-serif; }
 body { background: var(--light); color: var(--dark); overflow-x: hidden; }
+
+/* --- ADVANCED ACCOUNT DROPDOWN STYLE --- */
+.user-menu {
+    position: absolute;
+    top: 55px;
+    right: 0;
+    width: 220px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    display: none;
+    z-index: 6000;
+    padding: 15px;
+    border: 1px solid var(--accent);
+    text-align: left;
+}
+.user-menu.active { display: block; }
+.user-menu h4 { font-size: 14px; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 10px; font-family: 'Montserrat'; color: var(--dark); }
+.user-menu ul { list-style: none; }
+.user-menu li { padding: 10px 0; font-size: 13px; cursor: pointer; transition: 0.3s; color: #444; }
+.user-menu li:hover { color: var(--gold); }
+.user-menu li i { margin-right: 10px; width: 20px; text-align: center; }
+.logout-btn { color: #e11d48 !important; border-top: 1px solid #eee; margin-top: 10px; }
 
 /* --- CATEGORY POP-UP STYLE --- */
 #catPopup {
@@ -154,12 +176,23 @@ header {
     <div class="logo" onclick="location.reload()">ZAINABYA <span>GROUP</span> ISLAMIC</div>
     <div class="right">
         <div class="cart" onclick="toggleCart()">
-         <img src="CART.webp" style="width:24px;">
+           <img src="CART.webp" style="width:24px;">
             <span id="cartCount">0</span>
         </div>
-      <div class="account" onclick="login()" style="cursor:pointer;">
-<img src="account.png" style="width:24px;">
-</div>
+        
+        <div class="account-wrapper" style="position:relative;">
+            <div class="account" onclick="handleAccountClick()" style="cursor:pointer;">
+                <img src="ACCOUNT.webp" id="userIconImg" style="width:28px; height:28px; border-radius:50%; object-fit:cover;">
+            </div>
+            <div class="user-menu" id="userMenu">
+                <h4 id="userNameDisplay">Welcome, Guest</h4>
+                <ul>
+                    <li><i class="fa-solid fa-box"></i> My Orders</li>
+                    <li><i class="fa-solid fa-heart"></i> Wishlist</li>
+                    <li class="logout-btn" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</li>
+                </ul>
+            </div>
+        </div>
     </div>
 </header>
 
@@ -397,10 +430,10 @@ function searchProduct(){
 }
 renderMainFolders();
 </script>
-<script type="module">
 
+<script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
  apiKey: "AIzaSyBIX0H_PKPM6I9MLWlE1XrS1EL3qk4EoUA",
@@ -415,22 +448,59 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
 
-window.login = function(){
+// Advanced UI Update Function
+function updateAccountUI(user) {
+    const userImg = document.getElementById('userIconImg');
+    const userName = document.getElementById('userNameDisplay');
+    const userMenu = document.getElementById('userMenu');
 
-signInWithPopup(auth, provider)
-.then((result)=>{
-
-let user = result.user;
-alert("Welcome " + user.displayName);
-
-})
-.catch((error)=>{
-alert(error.message);
-});
-
+    if (user) {
+        userImg.src = user.photoURL || "ACCOUNT.webp";
+        userName.innerText = "Hello, " + (user.displayName ? user.displayName.split(' ')[0] : 'User');
+    } else {
+        userImg.src = "ACCOUNT.webp";
+        userName.innerText = "Welcome, Guest";
+        userMenu.classList.remove('active');
+    }
 }
 
+// Handle Account Click (Amazon/Flipkart Style)
+window.handleAccountClick = function() {
+    if (!auth.currentUser) {
+        // Not logged in: Trigger Login
+        signInWithPopup(auth, provider)
+        .then((result) => {
+            alert("Welcome " + result.user.displayName);
+        })
+        .catch((error) => alert(error.message));
+    } else {
+        // Logged in: Toggle Dropdown
+        document.getElementById('userMenu').classList.toggle('active');
+    }
+}
+
+// Sign Out Function
+window.logout = function() {
+    signOut(auth).then(() => {
+        alert("Signed out successfully");
+        location.reload();
+    });
+}
+
+// Observe Auth State (Persistence)
+onAuthStateChanged(auth, (user) => {
+    updateAccountUI(user);
+});
+
+// Close dropdown if clicked outside
+window.addEventListener('click', function(e) {
+    const menu = document.getElementById('userMenu');
+    const wrapper = document.querySelector('.account-wrapper');
+    if (menu.classList.contains('active') && !wrapper.contains(e.target)) {
+        menu.classList.remove('active');
+    }
+});
 </script>
+
 </body>
 </html>
-
