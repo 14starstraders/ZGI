@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
+/* --- AAPKA PURA CSS START --- */
 :root {
     --gold: #d4af37;
     --dark: #0f172a;
@@ -20,7 +21,6 @@
 * { margin:0; padding:0; box-sizing:border-box; font-family: 'Montserrat', sans-serif; }
 body { background: var(--light); color: var(--dark); overflow-x: hidden; }
 
-/* --- ADVANCED ACCOUNT DROPDOWN STYLE --- */
 .user-menu {
     position: absolute;
     top: 55px;
@@ -43,7 +43,6 @@ body { background: var(--light); color: var(--dark); overflow-x: hidden; }
 .user-menu li i { margin-right: 10px; width: 20px; text-align: center; }
 .logout-btn { color: #e11d48 !important; border-top: 1px solid #eee; margin-top: 10px; }
 
-/* --- CATEGORY POP-UP STYLE --- */
 #catPopup {
     position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.5);
     background: rgba(15, 23, 42, 0.9); color: white; padding: 20px 40px; border-radius: 50px;
@@ -93,73 +92,23 @@ header {
 .card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
 
 .p-img-container { 
-    width: 100%; 
-    height: 250px; 
-    overflow: hidden; 
-    background: #fff; 
-    padding: 10px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
+    width: 100%; height: 250px; overflow: hidden; background: #fff; padding: 10px; display: flex; align-items: center; justify-content: center; 
 }
+.card img { max-width: 100%; max-height: 100%; object-fit: contain; transition: var(--transition); }
 
-.card img { 
-    max-width: 100%; 
-    max-height: 100%; 
-    object-fit: contain; 
-    transition: var(--transition);
-}
-
-@media (max-width: 768px) {
-    .p-img-container { height: 180px; }
-}
-
-.info h3 { font-size: 14px; font-weight: 700; text-transform: uppercase; margin: 15px 0 10px; padding: 0 10px; }
-.price { font-weight: 700; font-size: 18px; margin-bottom: 20px; }
-
-.qty-btn-group {
-    display: flex; align-items: center; justify-content: center;
-    max-width: 180px; margin: 0 auto; background: #f8fafc; border-radius: 5px; border: 1px solid #eee;
-}
-.qty-btn-group button {
-    flex: 1; padding: 10px; border: none; background: none;
-    cursor: pointer; font-size: 18px; color: #666; transition: 0.2s;
-}
-.qty-btn-group button:hover { color: var(--gold); }
-.qty-btn-group span { flex: 1; font-weight: 600; color: var(--dark); }
-
-/* --- MODAL & CART --- */
 .product-modal { position: fixed; inset: 0; background: white; z-index: 3000; display: none; padding: 40px; overflow-y: auto; }
 .product-modal.active { display: block; animation: slideIn 0.4s ease-out; }
-@keyframes slideIn { from { transform: translateY(100%); } to { transform: translateY(0); } }
-.modal-close { position: fixed; top: 20px; right: 30px; font-size: 35px; cursor: pointer; z-index: 3001; }
-.modal-content { max-width: 1100px; margin: 40px auto; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
-.modal-left img { width: 100%; border: 1px solid var(--accent); border-radius: 8px; }
-
 .cartBox { position: fixed; right: -100%; top: 0; width: 400px; height: 100%; background: white; box-shadow: -10px 0 40px rgba(0,0,0,0.1); padding: 30px; z-index: 2000; transition: 0.5s; }
 .cartBox.active { right: 0; }
 .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: none; z-index: 1500; }
 .overlay.active { display: block; }
 
-.cart-item { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #f1f5f9; }
-.cart-item-img { width: 70px; height: 70px; object-fit: contain; border: 1px solid #eee; border-radius: 5px; }
-.cart-item-info { flex: 1; }
-.cart-item-qty { display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 5px 10px; border-radius: 5px; border: 1px solid #eee; width: fit-content; margin-top: 5px; }
-.cart-item-qty button { border: none; background: none; cursor: pointer; font-weight: 700; color: #666; }
-
-/* --- NEW CHECKOUT STYLE --- */
 .checkout-page { position: fixed; inset: 0; background: white; z-index: 4000; display: none; padding: 20px; overflow-y: auto; }
 .checkout-page.active { display: block; }
-.checkout-container { max-width: 500px; margin: 0 auto; }
-.form-input { width: 100%; padding: 15px; margin-bottom: 15px; border: 1px solid var(--accent); border-radius: 5px; font-size: 14px; }
-.qr-box { display: none; text-align: center; border: 2px dashed var(--gold); padding: 20px; border-radius: 10px; margin-top: 20px; }
+/* --- AAPKA PURA CSS END --- */
 
-@media (max-width: 768px) {
-    header { padding: 15px 20px; grid-template-columns: 1fr auto; }
-    .search-box { display: none; }
-    .products { padding: 15px; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .cartBox { width: 100%; }
-}
+/* UPGRADE: Error Style */
+.error-msg { color: #e11d48; font-size: 12px; margin-top: 5px; display: none; }
 </style>
 </head>
 
@@ -187,8 +136,8 @@ header {
             <div class="user-menu" id="userMenu">
                 <h4 id="userNameDisplay">Welcome, Guest</h4>
                 <ul>
-                    <li><i class="fa-solid fa-box"></i> My Orders</li>
-                    <li><i class="fa-solid fa-heart"></i> Wishlist</li>
+                    <li onclick="checkAuthAndRedirect('orders')"><i class="fa-solid fa-box"></i> My Orders</li>
+                    <li onclick="checkAuthAndRedirect('wishlist')"><i class="fa-solid fa-heart"></i> Wishlist</li>
                     <li class="logout-btn" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</li>
                 </ul>
             </div>
@@ -213,7 +162,6 @@ header {
 </section>
 
 <button id="backBtn" onclick="renderMainFolders()">← BACK TO ALL COLLECTIONS</button>
-
 <section class="products" id="productsGrid"></section>
 
 <div class="product-modal" id="productModal">
@@ -262,13 +210,13 @@ header {
         <div id="qrBox" class="qr-box">
             <h3>Scan & Pay</h3>
             <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=YourUPILinkHere" style="width:200px; margin:20px 0;">
-            <p style="font-size:12px; color:#666; margin-bottom:20px;">After payment, click below to send screenshot on WhatsApp.</p>
             <button onclick="finishOrder()" style="width:100%; background:var(--gold); color:var(--dark); padding:15px; border:none; border-radius:5px; cursor:pointer; font-weight:700;">DONE / ORDER ON WHATSAPP</button>
         </div>
     </div>
 </div>
 
 <script>
+/* --- AAPKA PURA LOGIC START --- */
 let cart = {};
 let total = 0;
 
@@ -297,14 +245,10 @@ function renderMainFolders(cat = 'all') {
     backBtn.style.display = "none";
     mainFolders.forEach(folder => {
         if(cat === 'all' || folder.cat === cat) {
-            grid.innerHTML += `
-                <div class="card" onclick="renderDesigns('${folder.name}')">
-                    <div class="p-img-container"><img src="${folder.img}"></div>
-                    <div class="info">
-                        <h3>${folder.name}</h3>
-                        <p style="color:var(--gold); font-size:12px; font-weight:600;">VIEW DESIGNS</p>
-                    </div>
-                </div>`;
+            grid.innerHTML += `<div class="card" onclick="renderDesigns('${folder.name}')">
+                <div class="p-img-container"><img src="${folder.img}"></div>
+                <div class="info"><h3>${folder.name}</h3><p style="color:var(--gold); font-size:12px; font-weight:600;">VIEW DESIGNS</p></div>
+            </div>`;
         }
     });
 }
@@ -317,32 +261,16 @@ function renderDesigns(folderName) {
     grid.innerHTML = "";
     hero.style.display = "none";
     backBtn.style.display = "block";
-    window.scrollTo(0,0);
     folder.data.forEach(item => {
-        grid.innerHTML += `
-            <div class="card">
-                <div class="p-img-container" onclick="openSpec('${item.name}', '${item.price}', '${item.img}', '${item.desc}')">
-                    <img src="${item.img}">
-                </div>
-                <div class="info">
-                    <h3>${item.name}</h3>
-                    <div class="price">Rs. ${item.price}</div>
-                    <div class="qty-btn-group">
-                        <button onclick="updateQty('${item.id}', -1, '${item.name}', ${item.price}, '${item.img}')">-</button>
-                        <span id="qty-${item.id}">${cart[item.id] ? cart[item.id].qty : 0}</span>
-                        <button onclick="updateQty('${item.id}', 1, '${item.name}', ${item.price}, '${item.img}')">+</button>
-                    </div>
-                </div>
-            </div>`;
+        grid.innerHTML += `<div class="card">
+            <div class="p-img-container" onclick="openSpec('${item.name}', '${item.price}', '${item.img}', '${item.desc}')"><img src="${item.img}"></div>
+            <div class="info"><h3>${item.name}</h3><div class="price">Rs. ${item.price}</div>
+            <div class="qty-btn-group">
+                <button onclick="updateQty('${item.id}', -1, '${item.name}', ${item.price}, '${item.img}')">-</button>
+                <span id="qty-${item.id}">${cart[item.id] ? cart[item.id].qty : 0}</span>
+                <button onclick="updateQty('${item.id}', 1, '${item.name}', ${item.price}, '${item.img}')">+</button>
+            </div></div></div>`;
     });
-}
-
-function filter(cat){
-    renderMainFolders(cat);
-    let popup = document.getElementById('catPopup');
-    popup.innerText = cat == 'all' ? 'All Collections' : cat.toUpperCase();
-    popup.classList.add('show');
-    setTimeout(() => { popup.classList.remove('show'); }, 800);
 }
 
 function updateQty(id, change, name, price, img) {
@@ -362,63 +290,39 @@ function renderCart() {
         let item = cart[id];
         total += (item.price * item.qty); count += item.qty;
         html += `<div class="cart-item">
-                    <img src="${item.img}" class="cart-item-img">
-                    <div class="cart-item-info">
-                        <p style="font-weight:600; font-size:14px; margin-bottom:2px;">${item.name}</p>
-                        <p style="color:var(--gold); font-size:12px; font-weight:600;">Rs. ${item.price}</p>
-                        <div class="cart-item-qty">
-                            <button onclick="updateQty('${id}', -1, '${item.name}', ${item.price}, '${item.img}')">-</button>
-                            <span>${item.qty}</span>
-                            <button onclick="updateQty('${id}', 1, '${item.name}', ${item.price}, '${item.img}')">+</button>
-                        </div>
-                    </div>
-                    <p style="font-weight:700; color:var(--dark);">Rs. ${item.price * item.qty}</p>
-                 </div>`;
+            <img src="${item.img}" class="cart-item-img">
+            <div class="cart-item-info"><p style="font-weight:600; font-size:14px;">${item.name}</p>
+            <div class="cart-item-qty">
+                <button onclick="updateQty('${id}', -1, '${item.name}', ${item.price}, '${item.img}')">-</button>
+                <span>${item.qty}</span>
+                <button onclick="updateQty('${id}', 1, '${item.name}', ${item.price}, '${item.img}')">+</button>
+            </div></div><p style="font-weight:700;">Rs. ${item.price * item.qty}</p></div>`;
     }
     document.getElementById("cartItems").innerHTML = html || "<p style='text-align:center; color:#999;'>Your bag is empty</p>";
     document.getElementById("totalPrice").innerText = total;
     document.getElementById("cartCount").innerText = count;
 }
 
-// CHECKOUT FUNCTIONS
+/* UPGRADE: Secure Checkout */
 function openCheckout() {
+    // Stage 1: Cart check
     if(total <= 0) return alert("Your cart is empty!");
+    
+    // Stage 2: Identity check (Bina ID ke error aayega)
+    if (!window.isUserLoggedIn) {
+        alert("🚨 ACCESS DENIED: Please Sign-In first to place an order.");
+        handleAccountClick(); // Open login popup
+        return;
+    }
+
     document.getElementById('checkoutTotal').innerText = total;
     document.getElementById('checkoutPage').classList.add('active');
 }
 
-function closeCheckout() {
-    document.getElementById('checkoutPage').classList.remove('active');
-    document.getElementById('detailsForm').style.display = 'block';
-    document.getElementById('qrBox').style.display = 'none';
-}
-
-function showQR() {
-    const name = document.getElementById('custName').value;
-    const phone = document.getElementById('custPhone').value;
-    const address = document.getElementById('custAddress').value;
-
-    if(!name || !phone || !address) return alert("Please fill all details!");
-
-    document.getElementById('detailsForm').style.display = 'none';
-    document.getElementById('qrBox').style.display = 'block';
-}
-
-function finishOrder() {
-    const name = document.getElementById('custName').value;
-    alert("Thank you " + name + "! Redirecting to WhatsApp...");
-    location.reload(); 
-}
-
-function openSpec(name, price, img, desc) {
-    document.getElementById('specName').innerText = name;
-    document.getElementById('specPrice').innerText = "Rs. " + price;
-    document.getElementById('specImg').src = img;
-    document.getElementById('specDesc').innerText = desc;
-    document.getElementById('productModal').classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-function closeSpec() { document.getElementById('productModal').classList.remove('active'); document.body.style.overflow = 'auto'; }
+function closeCheckout() { document.getElementById('checkoutPage').classList.remove('active'); }
+function filter(cat){ renderMainFolders(cat); }
+function openSpec(n,p,i,d){ document.getElementById('specName').innerText=n; document.getElementById('specPrice').innerText="Rs. "+p; document.getElementById('specImg').src=i; document.getElementById('specDesc').innerText=d; document.getElementById('productModal').classList.add('active'); }
+function closeSpec() { document.getElementById('productModal').classList.remove('active'); }
 function toggleCart(){ document.getElementById("cartBox").classList.toggle("active"); document.getElementById("overlay").classList.toggle("active"); }
 function searchProduct(){
     let input = document.querySelector(".search").value.toLowerCase();
@@ -448,55 +352,63 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
 
-// Advanced UI Update Function
+// Global Login Flag
+window.isUserLoggedIn = false;
+
 function updateAccountUI(user) {
     const userImg = document.getElementById('userIconImg');
     const userName = document.getElementById('userNameDisplay');
     const userMenu = document.getElementById('userMenu');
 
     if (user) {
+        window.isUserLoggedIn = true;
         userImg.src = user.photoURL || "ACCOUNT.webp";
         userName.innerText = "Hello, " + (user.displayName ? user.displayName.split(' ')[0] : 'User');
     } else {
+        window.isUserLoggedIn = false;
         userImg.src = "ACCOUNT.webp";
         userName.innerText = "Welcome, Guest";
         userMenu.classList.remove('active');
     }
 }
 
-// Handle Account Click (Amazon/Flipkart Style)
 window.handleAccountClick = function() {
     if (!auth.currentUser) {
-        // Not logged in: Trigger Login
+        // Bina ID ke Error/Login prompt
         signInWithPopup(auth, provider)
         .then((result) => {
-            alert("Welcome " + result.user.displayName);
+            alert("✅ Welcome back, " + result.user.displayName);
         })
-        .catch((error) => alert(error.message));
+        .catch((error) => alert("Error: " + error.message));
     } else {
-        // Logged in: Toggle Dropdown
         document.getElementById('userMenu').classList.toggle('active');
     }
 }
 
-// Sign Out Function
+window.checkAuthAndRedirect = function(target) {
+    if (!window.isUserLoggedIn) {
+        alert("🚨 Unauthorized! Please login to view " + target);
+        handleAccountClick();
+    } else {
+        alert("Opening your " + target + "...");
+    }
+}
+
 window.logout = function() {
     signOut(auth).then(() => {
-        alert("Signed out successfully");
+        alert("Logged out successfully");
         location.reload();
     });
 }
 
-// Observe Auth State (Persistence)
 onAuthStateChanged(auth, (user) => {
     updateAccountUI(user);
 });
 
-// Close dropdown if clicked outside
 window.addEventListener('click', function(e) {
     const menu = document.getElementById('userMenu');
     const wrapper = document.querySelector('.account-wrapper');
-    if (menu.classList.contains('active') && !wrapper.contains(e.target)) {
+    if (menu && menu.classList.contains('active') && !wrapper.contains(e.target)) {
         menu.classList.remove('active');
     }
 });
