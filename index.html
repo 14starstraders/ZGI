@@ -157,7 +157,7 @@ header {
             <i class="fa-solid fa-cart-shopping"></i>
             <span id="cartCount">0</span>
         </div>
-       <div class="account" onclick="openAccount()" style="cursor:pointer;">
+      <div class="account" onclick="login()" style="cursor:pointer;">
 <img src="account.png" style="width:24px;">
 </div>
     </div>
@@ -198,7 +198,7 @@ header {
 
 <div class="cartBox" id="cartBox">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
-        <h2 style="font-family:'Playfair Display';">Your Shopping Bag</h2>
+        <h2 style="font-family:'Playfair Display';">YOUR CART</h2>
         <i class="fa-solid fa-xmark" onclick="toggleCart()" style="cursor:pointer; font-size:24px;"></i>
     </div>
     <div id="cartItems"></div>
@@ -396,6 +396,40 @@ function searchProduct(){
     });
 }
 renderMainFolders();
+</script>
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const firebaseConfig = {
+ apiKey: "AIzaSyBIX0H_PKPM6I9MLWlE1XrS1EL3qk4EoUA",
+ authDomain: "stars-traders.firebaseapp.com",
+ projectId: "stars-traders",
+ storageBucket: "stars-traders.firebasestorage.app",
+ messagingSenderId: "772811314274",
+ appId: "1:772811314274:web:7a86f5e71ba32aaf49ad3b"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth();
+const provider = new GoogleAuthProvider();
+
+window.login = function(){
+
+signInWithPopup(auth, provider)
+.then((result)=>{
+
+let user = result.user;
+alert("Welcome " + user.displayName);
+
+})
+.catch((error)=>{
+alert(error.message);
+});
+
+}
+
 </script>
 </body>
 </html>
