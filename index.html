@@ -177,6 +177,138 @@ header {
 .checkout-container { max-width: 500px; margin: 0 auto; }
 .form-input { width: 100%; padding: 15px; margin-bottom: 15px; border: 1px solid var(--accent); border-radius: 5px; font-size: 14px; }
 .qr-box { display: none; text-align: center; border: 2px dashed var(--gold); padding: 20px; border-radius: 10px; margin-top: 20px; }
+.hadeeya-modal {
+    position: fixed; inset: 0; background: #fff; z-index: 9999;
+    display: none; overflow-y: auto; font-family: 'Poppins', sans-serif;
+}
+.hadeeya-modal.active { display: block; animation: slideIn 0.4s ease; }
+
+.hadeeya-grid { 
+    display: grid; 
+    grid-template-columns: 0.8fr 1.2fr; /* Ab image side choti ho gayi */
+    max-width: 1100px; /* Container ko thoda narrow karne se premium lagta hai */
+    margin: 0 auto; 
+    padding: 40px 20px; 
+    gap: 40px;
+}
+/* Visuals Section */
+.hadeeya-visuals { display: flex; gap: 20px; position: sticky; top: 20px; height: fit-content; }
+.side-thumbs { display: flex; flex-direction: column; gap: 10px; }
+.side-thumbs img { width: 80px; height: 80px; object-fit: cover; border: 1px solid #eee; cursor: pointer; border-radius: 4px; }
+.main-display { flex: 1; border: 1px solid #f5f5f5; border-radius: 8px; overflow: hidden; cursor: crosshair; }
+#specImg { width: 100%; height: auto; transition: transform 0.3s ease; }
+
+/* Content Section */
+.breadcrumb { font-size: 11px; letter-spacing: 1px; color: #999; margin-bottom: 10px; }
+.hadeeya-content h1 { font-size: 32px; font-weight: 600; color: #333; margin-bottom: 20px; }
+.price-box { margin-bottom: 20px; display: flex; align-items: baseline; gap: 5px; }
+.price-val { font-size: 36px; font-weight: 700; color: #000; }
+.tax-tag { font-size: 12px; color: #777; }
+
+.shipping-msg { background: #f9f9f9; padding: 12px; font-size: 13px; font-weight: 600; color: #2e7d32; border-radius: 5px; margin-bottom: 30px; }
+
+/* Hadeeya Table Style */
+.specs-section h3 { font-size: 14px; letter-spacing: 1px; margin-bottom: 15px; border-bottom: 2px solid #000; width: fit-content; }
+.hadeeya-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+.hadeeya-table td { padding: 12px 0; border-bottom: 1px solid #eee; font-size: 14px; color: #444; }
+.hadeeya-table td:first-child { font-weight: 700; width: 40%; color: #888; text-transform: uppercase; font-size: 12px; }
+
+/* Buttons */
+.hadeeya-actions { display: flex; gap: 15px; margin-bottom: 15px; }
+.qty-selector { display: flex; border: 1px solid #ddd; border-radius: 4px; overflow: hidden; }
+.qty-selector button { padding: 10px 15px; border: none; background: #fff; cursor: pointer; }
+.qty-selector input { width: 50px; text-align: center; border: none; border-left: 1px solid #ddd; border-right: 1px solid #ddd; }
+
+.add-to-cart-btn { flex: 1; background: #000; color: #fff; border: none; font-weight: 700; cursor: pointer; transition: 0.3s; }
+.add-to-cart-btn:hover { background: #333; }
+
+.whatsapp-btn { width: 100%; background: #25D366; color: #fff; border: none; padding: 15px; font-weight: 700; border-radius: 4px; cursor: pointer; }
+
+.close-btn { position: fixed; top: 20px; right: 40px; font-size: 35px; border: none; background: none; cursor: pointer; z-index: 100; }
+
+@media (max-width: 900px) {
+    .hadeeya-grid { grid-template-columns: 1fr; }
+    .hadeeya-visuals { flex-direction: column-reverse; }
+    .side-thumbs { flex-direction: row; }
+}
+/* 1. Top Black Banner */
+.top-announcement {
+    background: #000814;
+    color: #fff;
+    text-align: center;
+    padding: 8px 0;
+    font-size: 11px;
+    letter-spacing: 1px;
+    position: fixed;
+    top: 0; width: 100%; z-index: 10002;
+}
+
+/* 2. Main Nav (Logo & Search) */
+.main-header-fixed {
+    position: fixed;
+    top: 30px; /* Announcement bar ke niche */
+    left: 0; width: 100%;
+    background: #fff;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10001;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+/* 3. Category Buttons Bar */
+.category-nav-fixed {
+    position: fixed;
+    top: 115px; /* Header ke niche */
+    left: 0; width: 100%;
+    background: #fff;
+    padding: 15px 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    z-index: 10001;
+    border-bottom: 1px solid #eee;
+}
+
+/* 4. Modal (Product Page) ki Positioning */
+.hadeeya-modal {
+    position: fixed;
+    top: 180px; /* Ab modal category buttons ke niche se shuru hoga */
+    left: 0; width: 100%;
+    height: calc(100vh - 180px);
+    background: #fff;
+    z-index: 9999; /* Isse header ke piche rakha hai */
+    overflow-y: auto;
+    display: none;
+}
+.back-to-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    margin-bottom: 20px;
+    cursor: pointer;
+    color: #2b3990; /* Aapka brand blue color */
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: 0.3s ease;
+}
+
+.back-to-all i {
+    font-size: 16px;
+    transition: transform 0.3s ease;
+}
+
+.back-to-all:hover {
+    color: #d4af37; /* Hover par gold color */
+}
+
+.back-to-all:hover i {
+    transform: translateX(-5px); /* Arrow thoda piche move hoga hover par */
+}
 </style>
 </head>
 
@@ -184,6 +316,7 @@ header {
 <div id="catPopup">Category</div>
 <div class="top-bar">WELCOME TO ZAINABYA GROUP ISLAMIC | QUALITY PRODUCTS AT BEST PRICES</div>
 <div class="overlay" id="overlay" onclick="toggleCart()"></div>
+
 
 <header>
     <div class="search-box">
@@ -234,19 +367,67 @@ header {
 
 <section class="products" id="productsGrid"></section>
 
-<div class="product-modal" id="productModal">
-    <span class="modal-close" onclick="closeSpec()">&times;</span>
-    <div class="modal-content">
-        <div class="modal-left"><img id="specImg" src=""></div>
-        <div class="modal-right">
-            <h2 id="specName">Product Name</h2>
-            <div class="m-price" id="specPrice">Rs. 000</div>
-            <p class="m-desc" id="specDesc">Description here...</p>
-            <button style="width:100%; padding:20px; background:var(--dark); color:white; border:none; font-weight:700; cursor:pointer;" onclick="closeSpec()">GO BACK TO SHOP</button>
+
+
+
+     <div id="productModal" class="hadeeya-modal">
+        <div class="back-to-all" onclick="closeSpec()">
+    <i class="fa-solid fa-arrow-left-long"></i> 
+    <span>Back to All Collection</span>
+</div>
+    <div class="modal-header">
+        <button class="close-btn" onclick="closeSpec()">&times;</button>
+    </div>
+
+    <div class="hadeeya-grid">
+        <div class="hadeeya-visuals">
+            <div class="side-thumbs">
+                <img src="SAJDAGAH.webp" onclick="updateMain(this.src)">
+                <img src="FLAG.webp" onclick="updateMain(this.src)">
+                <img src="LOGO.png" onclick="updateMain(this.src)">
+            </div>
+            <div class="main-display" onmousemove="zoom(event)" onmouseleave="unzoom()">
+                <img id="specImg" src="" alt="Hadeeya Style">
+            </div>
+        </div>
+
+        <div class="hadeeya-content">
+            <nav class="breadcrumb">HOME / PREMIUM COLLECTION / <span id="catName">ISLAMIC ART</span></nav>
+            <h1 id="specName">Product Title</h1>
+            
+            <div class="price-box">
+                <span class="currency">Rs.</span>
+                <span id="specPrice" class="price-val">00</span>
+                <span class="tax-tag">(Tax included)</span>
+            </div>
+
+            <div class="shipping-msg">
+                <i class="fa-solid fa-truck"></i> FREE SHIPPING ON ALL ORDERS
+            </div>
+
+            <div class="specs-section">
+                <h3>PRODUCT SPECIFICATIONS</h3>
+                <table class="hadeeya-table">
+                    <tbody id="specTableBody">
+                        </tbody>
+                </table>
+            </div>
+
+            <div class="hadeeya-actions">
+                <div class="qty-selector">
+                    <button onclick="changeQty(-1)">-</button>
+                    <input type="number" id="prodQty" value="1" readonly>
+                    <button onclick="changeQty(1)">+</button>
+                </div>
+                <button id="modalAddToCartBtn" class="add-to-cart-btn">ADD TO CART</button>
+            </div>
+
+            <button class="whatsapp-btn">
+                <i class="fa-brands fa-whatsapp"></i> ORDER ON WHATSAPP
+            </button>
         </div>
     </div>
 </div>
-
 <div class="cartBox" id="cartBox">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
         <h2 style="font-family:'Playfair Display';">YOUR CART</h2>
@@ -560,18 +741,57 @@ function openAdminDashboard() {
     adminDiv.innerHTML = html;
     document.body.appendChild(adminDiv);
 }
-
-function openSpec(name, price, img, desc) {
+function openSpec(name, price, img, desc, specs, id) {
     document.getElementById('specName').innerText = name;
-    document.getElementById('specPrice').innerText = "Rs. " + price;
+    document.getElementById('specPrice').innerText = price;
     document.getElementById('specImg').src = img;
-    document.getElementById('specDesc').innerText = desc;
-    document.getElementById('productModal').classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-function closeSpec() { document.getElementById('productModal').classList.remove('active'); document.body.style.overflow = 'auto'; }
-function toggleCart(){ document.getElementById("cartBox").classList.toggle("active"); document.getElementById("overlay").classList.toggle("active"); }
 
+    // Hadeeya Table Rows
+    let table = document.getElementById('specTableBody');
+    table.innerHTML = "";
+    const pSpecs = specs || {"Material": "High-Quality Silk", "Care": "Hand Wash Only", "Handmade": "Yes", "Packaging": "Eco-friendly Box"};
+    
+    for (let key in pSpecs) {
+        table.innerHTML += `<tr><td>${key}</td><td>${pSpecs[key]}</td></tr>`;
+    }
+
+    // Cart Button Logic
+    document.getElementById('modalAddToCartBtn').onclick = () => {
+        const qty = parseInt(document.getElementById('prodQty').value);
+        updateQty(id, qty, name, price, img); // Aapka existing function
+        closeSpec();
+    };
+
+    document.getElementById('productModal').classList.add('active');
+    document.body.style.overflow = "hidden";
+}
+
+function updateMain(src) {
+    document.getElementById('specImg').src = src;
+}
+
+function changeQty(val) {
+    let input = document.getElementById('prodQty');
+    let current = parseInt(input.value);
+    if(current + val >= 1) input.value = current + val;
+}
+
+function zoom(e) {
+    const img = document.getElementById('specImg');
+    const x = e.offsetX / e.target.offsetWidth * 100;
+    const y = e.offsetY / e.target.offsetHeight * 100;
+    img.style.transformOrigin = `${x}% ${y}%`;
+    img.style.transform = "scale(2)";
+}
+
+function unzoom() {
+    document.getElementById('specImg').style.transform = "scale(1)";
+}
+
+function closeSpec() {
+    document.getElementById('productModal').classList.remove('active');
+    document.body.style.overflow = "auto";
+}
 renderMainFolders();
 </script>
 
